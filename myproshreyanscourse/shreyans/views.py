@@ -48,6 +48,9 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect('signin')
+
+
+
 def home(request):
     return render(request,'home.html')
 
@@ -63,6 +66,7 @@ def course_detail(request, course_id):
 
 def dashboard(request):
     return render(request, "dashboard.html")
+
 
 
 
