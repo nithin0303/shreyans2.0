@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://images.unsplash.com/photo-1518933165971-611dbc9c412d?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+    background-size: cover;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.2);
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #111;
+}
+
+.subtext {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.subtext a {
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+input {
+    width: 100%;
+    padding: 12px 10px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none;
+}
+
+.password-box {
+    position: relative;
+}
+
+.password-box span {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: #111;
+    cursor: pointer;
+    user-select: none;
+}
+
+.signin-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background: #111;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.google-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.footer-text {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin-top: 18px;
+}
+
+.footer-text a {
+    color: #111;
+    text-decoration: none;
+    font-weight: 500;
+}
+.messages p {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.messages .success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.messages .error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h2>Sign In</h2>
+    <p class="subtext">
+        Don't have an account? <a href="/signup">Sign Up</a>
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="Email" required>
+
+        <div class="password-box">
+            <input type="password" name="password" id="password" placeholder="Password" required>
+            <span id="togglePwd">Show</span>
+        </div>
+
+        <button type="submit" class="signin-btn">Sign In</button>
+    </form>
+
+    <button class="google-btn">
+        Continue with Google
+    </button>
+
+   {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+</div>
+
+<script>
+const pwd = document.getElementById("password");
+const toggle = document.getElementById("togglePwd");
+
+toggle.addEventListener("click", () => {
+    if (pwd.type === "password") {
+        pwd.type = "text";
+        toggle.innerText = "Hide";
+    } else {
+        pwd.type = "password";
+        toggle.innerText = "Show";
+    }
+});
+</script>
+
+</body>
+</html>
