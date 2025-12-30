@@ -51,9 +51,6 @@ def signout(request):
 def home(request):
     return render(request,'home.html')
 
-def home(request):
-    return render(request, "home.html")
-
 
 def course_list(request):
     courses = Course.objects.all()
@@ -66,6 +63,7 @@ def course_detail(request, course_id):
 
 def dashboard(request):
     return render(request, "dashboard.html")
+
 
 
 
