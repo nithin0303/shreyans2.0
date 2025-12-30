@@ -1,0 +1,1512 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <nav style="transform: translateY(0px);">
+  
+      <div class="header">
+
+        <div class="left" style="gap: 0.5rem;" onclick="window.location.href='/'">
+          <img src="https://ik.imagekit.io/sheryians/light-logo_lNzGXRRlQ.png" alt="">
+          <!-- <div style="height:1.8em; width:1px; background-color:white; display: inline-block; vertical-align: middle;"></div> -->
+          <span style="margin-top: 0.2em;">Sheryians <br> coding school</span>
+        </div>
+        <div class="right">
+          <a href="/" class="nav-item">
+            <span>Home</span>
+          </a>
+          <a href="/courses" class="nav-item">
+            <span>Courses</span>
+          </a>
+          <div class="nav-item bootcamp-dropdown">
+            <span class="dropdown-toggle" style="font-weight: 600; font-size: 1.2rem;">
+              <a href="/bootcamp">Bootcamp</a>
+
+              <i style="margin-top: 5px;" class="ri-arrow-down-s-line"></i>
+            </span>
+            <div class="dropdown-menu">
+              <a href="/kodr" class="dropdown-item">
+                <span>Offline KODR 3.0</span>
+                <small>Intensive Full-Stack Offline Bootcamp</small>
+              </a>
+              <a href="/kodex" class="dropdown-item">
+                <span>Online KODEX</span>
+                <small>Intensive Full-Stack Online Bootcamp</small>
+              </a>
+
+            </div>
+          </div>
+
+          <button onclick="openRequestCallback()" class="nav-item mobile-item request-callback">
+            <i class="ri-phone-line"></i>
+            <span>
+              Request Callback
+            </span>
+          </button>
+
+          
+
+
+
+              <button class="nav-item  auth-user ">
+
+                
+                    <a href="/signin" class="btn btn-primary sign-in">
+                      Sign In
+                    </a>
+                    
+              </button>
+
+              <button class="menu nav-item">
+                <div class="menu-toggle">
+                  <div class="line line1"></div>
+                  <div class="line line2"></div>
+                </div>
+
+                <div class="menu-panel">
+                  <div class="menu-header">
+                    <h1>Menu</h1>
+                  </div>
+                  <div class="menu-items">
+                    <a href="/" class="nav-item menu-item mobile-item">Home</a>
+                    <a href="/courses" class="nav-item menu-item mobile-item">Courses</a>
+                    <div class="menu-bootcamp">
+                      <div class="menu-bootcamp-header">
+                        <span style=" font-size:1.9rem;">Bootcamps</span>
+                      </div>
+                      <div class="menu-bootcamp-content">
+                        <a href="/kodr" class="nav-item menu-item mobile-item bootcamp-item">
+                          <span>Offline KODR 3.0</span>
+                          <small>Intensive Full-Stack Offline Bootcamp</small>
+                        </a>
+                        <a href="/kodex" class="nav-item menu-item mobile-item bootcamp-item">
+                          <span>Online KODEX</span>
+                          <small>Intensive Full-Stack Online Bootcamp</small>
+                        </a>
+                      </div>
+                    </div>
+                    <!-- <a href="https://reimagine.sheryians.com" class="nav-item menu-item mobile-item">Re-Imagine</a> -->
+                    
+                        
+                            <a href="/signin" class="nav-item menu-item mobile-item">Sign In</a>
+
+                            
+                  </div>
+                </div>
+
+              </button>
+
+        </div>
+
+
+
+
+        
+
+
+      </div>
+
+      
+      <style>
+        .bootcamp-dropdown {
+          position: relative;
+          cursor: pointer;
+        }
+
+        .bootcamp-dropdown .dropdown-toggle {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          padding: 8px 12px;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+
+        .bootcamp-dropdown:hover .dropdown-toggle {
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        .bootcamp-dropdown .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%) translateY(10px);
+          background: var(--background-color);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          padding: 8px;
+          min-width: 220px;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .bootcamp-dropdown:hover .dropdown-menu {
+          opacity: 1;
+          visibility: visible;
+          transform: translateX(-50%) translateY(0);
+        }
+
+        .bootcamp-dropdown .dropdown-item {
+          display: flex;
+          flex-direction: column;
+          padding: 12px 16px;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .bootcamp-dropdown .dropdown-item:hover {
+          background: rgba(128, 128, 128, 0.175);
+          transform: translateY(-1px);
+          box-shadow: 0 2px 8px rgba(128, 128, 128, 0.1);
+        }
+
+        .bootcamp-dropdown .dropdown-item span {
+          font-weight: 500;
+          font-size: 1rem;
+        }
+
+        .bootcamp-dropdown .dropdown-item small {
+          font-size: 0.8rem;
+          opacity: 0.8;
+          margin-top: 2px;
+        }
+
+        .menu-bootcamp {
+          padding: 8px 0;
+          margin: 4px 0;
+        }
+
+        .menu-bootcamp-header {
+          padding: 8px 20px;
+          color: inherit;
+          opacity: 0.85;
+        }
+
+        .bootcamp-item {
+          display: flex !important;
+          flex-direction: column;
+          align-items: start;
+          gap: 2px;
+        }
+
+        .bootcamp-item small {
+          font-size: 0.8rem;
+          opacity: 0.7;
+        }
+
+        /* Mobile Menu Bootcamp Styles */
+        .menu-bootcamp {
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .menu-bootcamp-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 16px 20px;
+          cursor: pointer;
+          position: relative;
+        }
+
+        .menu-bootcamp-header::after {
+          content: '\ea4e';
+          font-family: 'remixicon';
+          font-size: 1.2rem;
+          transition: transform 0.3s ease;
+        }
+
+        .menu-bootcamp-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+
+        .menu-bootcamp.active .menu-bootcamp-header::after {
+          transform: rotate(180deg);
+        }
+
+        .menu-bootcamp.active .menu-bootcamp-content {
+          max-height: 200px;
+        }
+
+        .menu-bootcamp .bootcamp-item {
+          padding: 12px 20px;
+          padding-left: 28px;
+          /* small indent so items are left but not flush */
+          opacity: 0.9;
+          transition: all 0.18s ease;
+          text-align: left;
+          /* ensure left alignment instead of centered */
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .menu-bootcamp .bootcamp-item:hover {
+          opacity: 1;
+          background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Force left alignment and small indent for bootcamp items on mobile */
+        .menu-panel .menu-items .menu-bootcamp,
+        .menu-panel .menu-items .menu-bootcamp .menu-bootcamp-content {
+          display: block !important;
+          text-align: left !important;
+        }
+
+        .menu-bootcamp .menu-item,
+        .menu-bootcamp .nav-item,
+        .menu-bootcamp .bootcamp-item {
+          text-align: left !important;
+          padding-left: 40px !important;
+          /* modest indent */
+          justify-content: flex-start !important;
+          align-items: flex-start !important;
+          display: block !important;
+        }
+
+        .menu-bootcamp .bootcamp-item span,
+        .menu-bootcamp .bootcamp-item small {
+          display: block !important;
+          width: 100% !important;
+          text-align: left !important;
+          margin-left: 0 !important;
+        }
+      </style>
+     
+
+              
+</nav>
+
+          
+
+
+
+             
+           
+  <iframe height="0" width="0" style="display: none; visibility: hidden;"></iframe>
+  
+    {% block css %}
+    
+    {% endblock css %}
+<style>
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+        user-select: none;
+    text-rendering: optimizeSpeed;
+    font-family: "Helvetica";
+    color: var(--text-color);
+     }
+     nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    isolation: isolate;
+    z-index: 111;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s 
+ease-in-out;
+}
+html body nav .header {
+    max-width: 150rem;
+}
+nav .header {
+    width: 100%;
+    margin: auto;
+    padding: 0.5rem var(--main-horizontal-padding);
+    padding-top: 1rem;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    max-width: 125rem;
+}
+nav .header .left {
+    display: flex;
+    align-items: center;
+    max-width: 38%;
+    cursor: pointer;
+}
+nav .header .left img {
+    width: 2.5em;
+    margin-right: 0.5rem;
+    margin-top: -0.2em;
+}
+nav .header * {
+    font-family: "NeueMachina";
+}
+
+nav .header .left span {
+    font-size: 1.1em;
+    line-height: 1.3;
+}
+nav .header * {
+    font-family: "NeueMachina";
+}
+    nav .header .right {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+nav .header .right .nav-item {
+    --nav-item-horizontal-padding: 1em;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0.5em var(--nav-item-horizontal-padding);
+    cursor: pointer;
+    background-color: transparent;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+}
+nav a {
+    color: white !important;
+}
+nav .header .right .nav-item.request-callback {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+nav .header .right .nav-item.request-callback i {
+    font-size: 1.5em;
+    display: none;
+}
+nav .header .right .nav-item.request-callback span {
+    display: initial;
+    white-space: nowrap;
+}
+nav .header .right .nav-item:has(a.btn) {
+    padding: 0;
+}
+nav .header .right .nav-item.menu .menu-toggle {
+    font-size: 1.5rem;
+    width: 1em;
+    height: 1em;
+    padding: 0 !important;
+    z-index: 3;
+    position: relative !important;
+}
+nav .header .right .nav-item.menu .menu-toggle .line.line1 {
+    top: calc(50% - var(--gap));
+    left: 0;
+    top: calc(50% - var(--gap));
+}
+nav .header .right .nav-item.menu .menu-toggle .line {
+    height: 0.1em;
+    width: 1em;
+    background-color: var(--text-color);
+    position: absolute;
+    --gap: 0.25em;
+    --animation-duration: 0.2s;
+    --animation-interval-time: 0.05s;
+}
+nav .header .right .nav-item.menu .menu-toggle .line.line2 {
+    bottom: calc(50% - var(--gap));
+    right: 0;
+    /* bottom: calc(50% - var(--gap)); */
+}
+nav .header .right .nav-item.menu .menu-panel {
+    height: 110vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--background-color);
+    transform: translateX(100%);
+    transition: all 0.4s 
+ease-in-out;
+}
+nav .header .right .nav-item.menu .menu-panel .menu-header {
+    font-size: 2em;
+    padding: 1.3rem 7vw;
+    padding-top: 2.7rem;
+    border-bottom: 1px solid var(--fuscous-gray);
+}
+
+nav .header .right .nav-item.menu .menu-panel * {
+    text-align: left;
+}
+nav .header .right .nav-item.menu .menu-panel .menu-header h1 {
+    font-size: 1.3em;
+    font-weight: 300;
+}
+nav .header .right .nav-item.menu .menu-panel .menu-items {
+    padding: 0.5rem 0;
+    padding-top: 4rem;
+}
+nav .header .right .nav-item.menu .menu-panel .menu-items .menu-item {
+    font-size: 2em;
+    color: var(--boulder);
+}
+.menu-panel .menu-items .menu-bootcamp, .menu-panel .menu-items .menu-bootcamp .menu-bootcamp-content {
+    display: block !important;
+    text-align: left !important;
+}
+
+.menu-bootcamp .bootcamp-item span, .menu-bootcamp .bootcamp-item small {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    margin-left: 0 !important;
+}
+nav .header .right .nav-item.menu .menu-panel .menu-items .menu-item {
+    font-size: 2em;
+    color: var(--boulder);
+}
+    
+
+ #view3 {
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 6rem;
+    gap: 4rem;
+}
+#view3 .top h1 {
+    font-size: 3em;
+    font-weight: 300;
+}
+#view3 .top h1 span {
+    font-family: neueMachina;
+}
+#view3 .bottom .courses {
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(23rem, 1fr));
+    gap: 7rem 2rem;
+}
+#view3 .bottom .courses .course-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex: 1 0 25rem;
+}
+#view3 .bottom .courses .course-wrapper .course {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    --border-radius: 1rem;
+    --body-padding: 1.8rem;
+    --body-padding-vertical: 2rem;
+    width: 100%;
+    background-color: var(--ui-element-secondary-color);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+}
+#view3 .bottom .courses .course-wrapper .course .course-image {
+    aspect-ratio: 16 / 9;
+   
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+#view3 .bottom .courses .course-wrapper .course .course-image .sub-tags {
+    position: absolute;
+    top: 0.8em;
+    right: 0.75em;
+}
+#view3 .bottom .courses .course-wrapper .course .course-image img {
+    height: 100%;
+    width: 100%;
+}
+#view3 .bottom .courses .course-wrapper .course .course-body {
+    
+    padding-right: calc(var(--body-padding) - 0.2em);
+    letter-spacing: 0.02em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 0 auto;
+    border-radius: 0px 0px 0.8rem 0.8rem;
+}
+view3 .bottom .courses .course-wrapper .buy-now {
+    width: 100%;
+    font-size: 1.7rem;
+    font-weight: 600;
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+}
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--black);
+}
+.btn {
+    width: fit-content;
+    color: var(--black);
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.45em 1.5em;
+    border-radius: 0.4em;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    text-rendering: optimizeSpeed;
+    font-family: "Helvetica";
+    color: var(--text-color);
+}
+
+#view4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 6rem;
+}
+
+
+
+
+html body main {
+    max-width: 150rem;
+}
+#view1 .middle {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 4rem;
+    font-size: clamp(10px, 1.2vw, 1rem);
+    position: relative;
+}
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+#footer {
+    /* padding: var(--main-horizontal-padding); */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+#footer .top .footer-section .logo {
+    width: 3.5rem;
+}
+#footer .top {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    position: relative;
+}
+#footer .top::after, #footer .top::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    left: 50%;
+    width: 105%;
+    height: 0.05rem;
+    background-color: var(--boulder);
+    opacity: 0.5;
+}
+#footer .top .footer-section:nth-child(1) {
+    flex-basis: 18rem;
+    margin-top: 1rem;
+}
+
+#footer .top .footer-section {
+    display: flex;
+    gap: 1.3rem;
+    flex-direction: column;
+}
+#footer .top .footer-section .options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.05rem;
+    margin-top: 0.4rem;
+}
+
+#footer .top .footer-section .socials {
+    display: flex;
+    gap: 2rem;
+}
+html{
+     --cod-gray: #0c0c0c;
+    --mercury: #e9e9e9;
+    --black: #000000;
+    --gray-950: #121212;
+    --Shark: #1e1e1e;
+    --fuscous-gray: #4f4f4f;
+    --boulder: #7c7c7c;
+    --cod-gray-200: #d1d1d1;
+    --gray-86: #dbdbdb;
+    --Silver-Chalice: #b3b3b3;
+    --white: #ffffff;
+    --Wild-Sand: #f4f4f4;
+    --background-color: #0c0c0c;
+    --ternary-gray-color: #202020;
+    --caribbean-green: #24cfa6;
+    --Lochinvar: #428e7c;
+    --error-color: #882727;
+    --main-horizontal-padding: 4.9rem;
+    --text-color: var(--mercury);
+    --ui-element-color: #2C2C2C;
+    --ui-element-secondary-color: #171717;
+    --ui-element-ternary-color: #1D1D1D;
+    --ui-element-highlight-color: var(--gray-950);
+    --accent-color: var(--caribbean-green);
+    --sub-text-color: #9E9E9E;
+    --form-input-border: #3c3c3c;
+    --link-color: #0084FF;
+    --discord-color: #7b40ff;
+    --dot-dimension: 0.5em;
+    font-size: clamp(14px, 0.85vw, 16px);
+    --main-horizontal-padding: 5rem;
+    transition: all 0.15s 
+
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cod-gray);
+    
+   
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cod-gray);
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+.btn {
+    width: fit-content;
+    color: var(--black);
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.45em 1.5em;
+    border-radius: 0.4em;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    text-decoration: none;
+}
+.btn {
+    padding: 0.45em 1.5em;
+    width: -moz-fit-content;
+    width: fit-content;
+    color: var(--black);
+    border-radius: 0.4em;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s 
+ease-in-out;
+    font-weight: 500;
+    text-decoration: none;
+    text-align: center;
+}
+  </style>
+</head>
+<div><template shadowrootmode="open"><div id="plasmo-shadow-container" style="z-index: 2147483647; position: absolute;"><div id="plasmo-mount-container" data-v-app="" style="display: flex; position: relative; top: 0px; left: 0px;"></div></div></template></div>
+<body>
+  {% block body %}
+  {% endblock body %}
+
+  
+    <section class="view" id="view3">
+      <div class="top">
+        <h1>
+          <span>Courses Offered.</span>
+        </h1>
+      </div>
+      <div class="bottom">
+        <div class="courses">
+         
+          
+          <div class="course-wrapper  ">
+            
+            <a href="/courses/courses-details/Data Science and Analytics with GenAI" class="course">
+              <div class="course-image">
+
+                <div class="sub-tags">
+
+                  
+                    
+                      <div class="sub-tag">
+                        AI
+                      </div>
+                    
+                  
+                </div>
+
+
+                <img alt="" src="https://ik.imagekit.io/sheryians/courses_gif/undefined-Image_2_QUZ-yb_0T.jpeg">
+              </div>
+              <div class="course-body">
+                <div class="top">
+                  <h2>Data Science and Analytics with GenAI</h2>        
+                  <div class="tags">
+                   
+                    <p>Hinglish</p>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <div class="left">
+                   <span>Limited Time Discount</span>
+                   <div>
+                    <p>₹ 6999</p>
+                    
+                    <small>₹ 15000</small>
+                  </div>
+                  </div>
+                  <div class="right">
+                    <div>
+                      53% OFF
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="course-body">
+                <h2>Data Science and Analytics with GenAI </h2>
+              </div>
+
+              <div class="course-body-tags">
+                <div class="devider"></div>
+                <div class="tags">
+                  
+                  <span class="tag">Programming</span>
+                  
+                  <span class="tag">Logic Building</span>
+                  
+                </div>
+              </div>
+
+              <div class="course-instructor">
+                <p>
+                  By <span>
+                    Akarsh Vyas
+                  </span>
+                </p>
+
+                
+                <span>₹ 8260</span>
+                
+
+              </div> -->
+            </a>
+
+            
+            <a href="/courses/courses-details/Data Science and Analytics with GenAI" class="buy-now btn btn-primary">View Details</a>
+            
+
+
+          </div>
+          
+          <div class="course-wrapper  ">
+            
+            <a href="/courses/courses-details/2.0 Job Ready AI Powered Cohort: Web + DSA + Aptitude" class="course">
+              <div class="course-image">
+
+                <div class="sub-tags">
+
+                  
+                    
+                      <div class="sub-tag">
+                        Job Ready
+                      </div>
+                    
+                  
+                </div>
+
+
+                <img alt="" src="https://ik.imagekit.io/sheryians/Cohort%202.0/cohort-3_ekZjBiRzc-2_76HU4-Mz5z.jpeg?updatedAt=1757741949621">
+              </div>
+              <div class="course-body">
+                <div class="top">
+                  <h2>2.0 Job Ready AI Powered Cohort: Web + DSA + Aptitude</h2>        
+                  <div class="tags">
+                   <small class="live">Live Batch</small>
+                    <p>Hinglish</p>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <div class="left">
+                   <span>Early Bird Discount</span>
+                   <div>
+                    <p>₹ 5999</p>
+                    <strong>(+ GST)</strong>
+                    <small>₹ 11999</small>
+                  </div>
+                  </div>
+                  <div class="right">
+                    <div>
+                      50% OFF
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="course-body">
+                <h2>2.0 Job Ready AI Powered Cohort: Web + DSA + Aptitude <span>LIVE Class</span></h2>
+              </div>
+
+              <div class="course-body-tags">
+                <div class="devider"></div>
+                <div class="tags">
+                  
+                  <span class="tag">Web Development</span>
+                  
+                  <span class="tag">Programming</span>
+                  
+                  <span class="tag">Aptitude</span>
+                  
+                  <span class="tag">Reasoning</span>
+                  
+                </div>
+              </div>
+
+              <div class="course-instructor">
+                <p>
+                  By <span>
+                    Harsh Sharma
+                  </span>
+                </p>
+
+                
+                <span>₹ 6999</span>
+                
+
+              </div> -->
+            </a>
+
+            
+            <a href="/courses/courses-details/2.0 Job Ready AI Powered Cohort: Web + DSA + Aptitude" class="buy-now btn btn-primary">View Details</a>
+            
+
+
+          </div>
+          
+          <div class="course-wrapper  ">
+            
+            <a href="/courses/courses-details/DSA Domination Cohort" class="course">
+              <div class="course-image">
+
+                <div class="sub-tags">
+
+                  
+                    
+                      <div class="sub-tag">
+                        Logic Building
+                      </div>
+                    
+                  
+                </div>
+
+
+                <img alt="" src="https://ik.imagekit.io/sheryians/courses_gif/undefined-web-dsa-thumb-10_ZKtPNgmW_.webp_Zhu2w1to5h.jpeg">
+              </div>
+              <div class="course-body">
+                <div class="top">
+                  <h2>DSA Domination Cohort</h2>        
+                  <div class="tags">
+                   <small class="live">Live Batch</small>
+                    <p>Hinglish</p>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <div class="left">
+                   <span>Limited Time Discount</span>
+                   <div>
+                    <p>₹ 6600</p>
+                    <strong>(+ GST)</strong>
+                    <small>₹ 7500</small>
+                  </div>
+                  </div>
+                  <div class="right">
+                    <div>
+                      12% OFF
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="course-body">
+                <h2>DSA Domination Cohort <span>LIVE Class</span></h2>
+              </div>
+
+              <div class="course-body-tags">
+                <div class="devider"></div>
+                <div class="tags">
+                  
+                  <span class="tag">Programming</span>
+                  
+                  <span class="tag">Logic Building</span>
+                  
+                </div>
+              </div>
+
+              <div class="course-instructor">
+                <p>
+                  By <span>
+                    Ali Ansari
+                  </span>
+                </p>
+
+                
+                <span>₹ 7788</span>
+                
+
+              </div> -->
+            </a>
+
+            
+            <a href="/courses/courses-details/DSA Domination Cohort" class="buy-now btn btn-primary">View Details</a>
+            
+
+
+          </div>
+          
+          <div class="course-wrapper  ">
+            
+            <a href="/courses/courses-details/Job Ready AI Powered Cohort: Web + DSA + Aptitude" class="course">
+              <div class="course-image">
+
+                <div class="sub-tags">
+
+                  
+                    
+                      <div class="sub-tag">
+                        Job Ready
+                      </div>
+                    
+                  
+                </div>
+
+
+                <img alt="" src="https://ik.imagekit.io/sheryians/courses_gif/undefined-IMG_5100_7vO7pODI9.JPG">
+              </div>
+              <div class="course-body">
+                <div class="top">
+                  <h2>Job Ready AI Powered Cohort: Web + DSA + Aptitude</h2>        
+                  <div class="tags">
+                   <small class="live">Live Batch</small>
+                    <p>Hinglish</p>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <div class="left">
+                   <span>Limited Time Discount</span>
+                   <div>
+                    <p>₹ 5999</p>
+                    <strong>(+ GST)</strong>
+                    <small>₹ 11999</small>
+                  </div>
+                  </div>
+                  <div class="right">
+                    <div>
+                      50% OFF
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="course-body">
+                <h2>Job Ready AI Powered Cohort: Web + DSA + Aptitude <span>LIVE Class</span></h2>
+              </div>
+
+              <div class="course-body-tags">
+                <div class="devider"></div>
+                <div class="tags">
+                  
+                  <span class="tag">Web Development</span>
+                  
+                  <span class="tag">Logic Building</span>
+                  
+                  <span class="tag">Aptitude</span>
+                  
+                  <span class="tag">Reasoning</span>
+                  
+                </div>
+              </div>
+
+              <div class="course-instructor">
+                <p>
+                  By <span>
+                    Harsh Sharma
+                  </span>
+                </p>
+
+                
+                <span>₹ 7080</span>
+                
+
+              </div> -->
+            </a>
+
+            
+            <a href="/courses/courses-details/Job Ready AI Powered Cohort: Web + DSA + Aptitude" class="buy-now btn btn-primary">View Details</a>
+            
+
+
+          </div>
+          
+          <div class="course-wrapper  ">
+            
+            <a href="/courses/courses-details/Three.js Domination" class="course">
+              <div class="course-image">
+
+                <div class="sub-tags">
+
+                  
+                    
+                      <div class="sub-tag">
+                        ANIMATION
+                      </div>
+                    
+                  
+                </div>
+
+
+                <img alt="" src="https://ik.imagekit.io/sheryians/courses_gif/undefined-maxresdefault_5-AHh9_1Y.jpg">
+              </div>
+              <div class="course-body">
+                <div class="top">
+                  <h2>Three.js Domination</h2>        
+                  <div class="tags">
+                   
+                    <p>Hindi</p>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <div class="left">
+                   <span>Limited time discount</span>
+                   <div>
+                    <p>₹ 2499</p>
+                    
+                    <small>₹ 3500</small>
+                  </div>
+                  </div>
+                  <div class="right">
+                    <div>
+                      29% OFF
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="course-body">
+                <h2>Three.js Domination </h2>
+              </div>
+
+              <div class="course-body-tags">
+                <div class="devider"></div>
+                <div class="tags">
+                  
+                  <span class="tag">Animations</span>
+                  
+                  <span class="tag">3D</span>
+                  
+                  <span class="tag">Designing</span>
+                  
+                </div>
+              </div>
+
+              <div class="course-instructor">
+                <p>
+                  By <span>
+                    Harsh Sharma
+                  </span>
+                </p>
+
+                
+                <span>₹ 2499</span>
+                
+
+              </div> -->
+            </a>
+
+            
+            <a href="/courses/courses-details/Three.js Domination" class="buy-now btn btn-primary">View Details</a>
+            
+
+
+          </div>
+          
+          <div class="course-wrapper  ">
+            
+            <a href="/courses/courses-details/Java &amp; DSA Domination" class="course">
+              <div class="course-image">
+
+                <div class="sub-tags">
+
+                  
+                    
+                      <div class="sub-tag">
+                        INDEPTH
+                      </div>
+                    
+                  
+                </div>
+
+
+                <img alt="" src="https://ik.imagekit.io/sheryians/courses_gif/undefined-javaas_Large_jY0Wighav__6PygWBZQ.jpeg">
+              </div>
+              <div class="course-body">
+                <div class="top">
+                  <h2>Java &amp; DSA Domination</h2>        
+                  <div class="tags">
+                   
+                    <p>Hinglish</p>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <div class="left">
+                   <span>Limited Time Discount</span>
+                   <div>
+                    <p>₹ 4999</p>
+                    
+                    <small>₹ 9999</small>
+                  </div>
+                  </div>
+                  <div class="right">
+                    <div>
+                      50% OFF
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="course-body">
+                <h2>Java &amp; DSA Domination </h2>
+              </div>
+
+              <div class="course-body-tags">
+                <div class="devider"></div>
+                <div class="tags">
+                  
+                  <span class="tag">Programming</span>
+                  
+                  <span class="tag">Logic Building</span>
+                  
+                </div>
+              </div>
+
+              <div class="course-instructor">
+                <p>
+                  By <span>
+                    Adarsh Gupta
+                  </span>
+                </p>
+
+                
+                <span>₹ 4999</span>
+                
+
+              </div> -->
+            </a>
+
+            
+            <a href="/courses/courses-details/Java &amp; DSA Domination" class="buy-now btn btn-primary">View Details</a>
+            
+
+
+          </div>
+          
+          <div class="course-wrapper  ">
+            
+            <a href="/courses/courses-details/Aptitude &amp; Reasoning for Campus Placements" class="course">
+              <div class="course-image">
+
+                <div class="sub-tags">
+
+                  
+                    
+                      <div class="sub-tag">
+                        Placements
+                      </div>
+                    
+                  
+                </div>
+
+
+                <img alt="" src="https://ik.imagekit.io/sheryians/courses_gif/undefined-apti_reasoning_45vyAnZ4y.jpeg">
+              </div>
+              <div class="course-body">
+                <div class="top">
+                  <h2>Aptitude &amp; Reasoning for Campus Placements</h2>        
+                  <div class="tags">
+                   
+                    <p>Hinglish</p>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <div class="left">
+                   <span>Limited Time Discount</span>
+                   <div>
+                    <p>₹ 1100</p>
+                    
+                    <small>₹ 1999</small>
+                  </div>
+                  </div>
+                  <div class="right">
+                    <div>
+                      45% OFF
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="course-body">
+                <h2>Aptitude &amp; Reasoning for Campus Placements </h2>
+              </div>
+
+              <div class="course-body-tags">
+                <div class="devider"></div>
+                <div class="tags">
+                  
+                  <span class="tag">Logic Building</span>
+                  
+                  <span class="tag">Aptitude</span>
+                  
+                  <span class="tag">Reasoning</span>
+                  
+                </div>
+              </div>
+
+              <div class="course-instructor">
+                <p>
+                  By <span>
+                    Akarsh Vyas
+                  </span>
+                </p>
+
+                
+                <span>₹ 1100</span>
+                
+
+              </div> -->
+            </a>
+
+            
+            <a href="/courses/courses-details/Aptitude &amp; Reasoning for Campus Placements" class="buy-now btn btn-primary">View Details</a>
+            
+
+
+          </div>
+          
+          <div class="course-wrapper  ">
+            
+            <a href="/courses/courses-details/Front-End Domination: Create Anything with Code" class="course">
+              <div class="course-image">
+
+                <div class="sub-tags">
+
+                  
+                    
+                      <div class="sub-tag">
+                        INDEPTH
+                      </div>
+                    
+                  
+                </div>
+
+
+                <img alt="" src="https://ik.imagekit.io/sheryians/courses_gif/Front-End_Domination__Create_Anything_with_Code-FRONTENDTHUBNAIL_Wf8WqcNJx.jpg">
+              </div>
+              <div class="course-body">
+                <div class="top">
+                  <h2>Front-End Domination: Create Anything with Code</h2>        
+                  <div class="tags">
+                   
+                    <p>Hindi</p>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <div class="left">
+                   <span>Limited Time Discount</span>
+                   <div>
+                    <p>₹ 3999</p>
+                    
+                    <small>₹ 9999</small>
+                  </div>
+                  </div>
+                  <div class="right">
+                    <div>
+                      60% OFF
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="course-body">
+                <h2>Front-End Domination: Create Anything with Code </h2>
+              </div>
+
+              <div class="course-body-tags">
+                <div class="devider"></div>
+                <div class="tags">
+                  
+                  <span class="tag">Web Development</span>
+                  
+                  <span class="tag">Animations</span>
+                  
+                  <span class="tag">Designing</span>
+                  
+                </div>
+              </div>
+
+              <div class="course-instructor">
+                <p>
+                  By <span>
+                    Harsh &amp; Sarthak
+                  </span>
+                </p>
+
+                
+                <span>₹ 3999</span>
+                
+
+              </div> -->
+            </a>
+
+            
+            <a href="/courses/courses-details/Front-End Domination: Create Anything with Code" class="buy-now btn btn-primary">View Details</a>
+            
+
+
+          </div>
+          
+
+        </div>
+      </div>
+    </section>
+    {% block view4%}
+    {% endblock view4%}
+
+                  
+                    
+               
+   
+    <section id="footer">
+  <div class="top">
+    <div class="footer-section">
+      <img class="logo" src="https://ik.imagekit.io/sheryians/light-logo_lNzGXRRlQ.png?updatedAt=1701272916848" alt="">
+      <p>Let’s connect with our socials</p>
+      <div class="socials">
+        <a target="_blank" href="https://www.instagram.com/sheryians_coding_school"><i class="ri-instagram-fill"></i></a>
+        <a target="_blank" href="https://in.linkedin.com/company/the-sheryians-coding-school"><i class="ri-linkedin-box-fill"></i></a>
+        <a target="_blank" href="https://discord.gg/D23JkFqrgz"><i class="ri-discord-fill"> </i></a>
+        <a target="_blank" href="https://www.youtube.com/@sheryians"><i class="ri-youtube-fill"></i></a>
+        <a target="_blank" href="https://twitter.com/sheryians_"><i class="ri-twitter-fill"></i></a>
+      </div>
+    </div>
+    <!-- <div class="footer-section">
+      <h1>
+        OUR COURSES
+      </h1>
+      <div class="options">
+        <p>Popular Courses</p>
+        <p>Web Development</p>
+        <p>Data Science</p>
+        <p>Interview Preparation</p>
+        <p>Programming Languages</p>
+        <p>Events</p>
+        <p>FAQs</p>
+      </div>
+    </div> -->
+    <div class="footer-section">
+      <h1>
+        COMPANY
+      </h1>
+      <div class="options">
+        <a target="_blank" href="/aboutUs">About Us</a>
+        <a href="mailto:hello@sheryians.com">Support</a>
+        <a target="_blank" href="/Assets/privacy-policy/Privacy_policy.pdf">Privacy Policy</a>
+        <a target="_blank" href="/terms-and-conditions/Terms_and_Conditions.pdf">Terms and Condition</a>
+        <a target="_blank" href="/Pricing&amp;Refund-Policy/Pricing-and-Refund_policy.pdf">Pricing and Refund</a>
+        <a target="_blank" href="/hireFromUs">Hire From Us</a>
+        <a target="_blank" href="/projects">Submit Projects</a>
+        <!-- <a target="_blank" href="https://ik.imagekit.io/sheryians/Bug_8EBE0pzVa.pdf">Bug Bounty</a> -->
+      </div>
+    </div>
+    <div class="footer-section">
+      <h1>COMMUNITY</h1>
+      <div class="options">
+        <!-- <a target="_blank" href="https://www.instagram.com/inertiabysheryians">Inertia</a> -->
+        <a target="_blank" href="https://discord.gg/D23JkFqrgz">Discord</a>
+                 <a target="_blank" href="/jobs">Jobs</a>
+      </div>
+    </div>
+    <div class="footer-section">
+      <h1>Get In Touch</h1>
+
+      <div class="options">
+        <div class="contact-info">
+          <p>Online: <span> 11am - 8pm</span> </p>
+          <a href="tel:+919993478545">+91 9993478545</a>
+        </div>
+        <div class="contact-info">
+          <p>Offline: <span></span> 11am - 8pm </p>
+          <a href="tel:+919691778470">+91 96917 78470</a>
+        </div>
+        <a href="mailto:hello@sheryians.com">hello@sheryians.com</a>
+        <a target="_blank" href="https://www.google.com/maps/place/Sheryians+Coding+School/@23.2512609,77.4627502,17z/data=!3m1!4b1!4m6!3m5!1s0x397c43977890a98d:0x928a948dc6de732e!8m2!3d23.251256!4d77.4653251!16s%2Fg%2F11gvy2g2z8">23-B,
+          Indrapuri Sector C,
+          Bhopal(MP), 462021</a>
+      </div>
+
+    </div>
+  </div>
+  <div class="bottom">
+    <h1 style="text-align: center;">Copyright © 2025 Sheryians Pvt. Ltd. <br> All Rights Reserved.</h1>
+  </div>
+</section>
+  
+</body>
+
+      
+    
+   
+    
+</html>
