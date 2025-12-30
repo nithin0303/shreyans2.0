@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect,HttpResponse
 from django.contrib.auth import get_user_model,authenticate, login, logout
 from django.contrib import messages
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
+from .models import Course
 
 
 
@@ -47,4 +50,22 @@ def signout(request):
     return redirect('signin')
 def home(request):
     return render(request,'home.html')
+
+def home(request):
+    return render(request, "home.html")
+
+
+def course_list(request):
+    courses = Course.objects.all()
+    return render(request, "course_list.html", {"courses": courses})
+
+
+def course_detail(request, course_id):
+    course = get_object_or_404(Course, id=course_id)
+    return render(request, "course_detail.html", {"course": course})
+
+def dashboard(request):
+    return render(request, "dashboard.html")
+
+
 
