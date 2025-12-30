@@ -7,4 +7,5 @@ def bootcamp(request):
 
     return render(request,'bootcamp.html')
 
-def logout(
+
+
