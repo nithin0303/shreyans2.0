@@ -4,4 +4,7 @@ def home(request):
 def courses(request):
     return render(request,'shreyanscourse.html')
 def bootcamp(request):
+
     return render(request,'bootcamp.html')
+
+def logout(
