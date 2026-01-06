@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB3aWR0aD0nNDMwJyBoZWlnaHQ9JzQwNDcnIHZpZXdCb3g9JzAgMCA0MzAgNDA0NycgZmlsbD0nbm9uZScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48ZyBjbGlwLXBhdGg9J3VybCgjY2xpcDBfMjUwXzQ3NiknPjxyZWN0IHdpZHRoPSc0MzAnIGhlaWdodD0nNDA0NycgZmlsbD0nIzBDMEMwQycvPjxnIG9wYWNpdHk9JzAuNyc+PGcgb3BhY2l0eT0nMC40JyBmaWx0ZXI9J3VybCgjZmlsdGVyMF9mXzI1MF80NzYpJz48cGF0aCBkPSdNMTQxLjczMSAyNDkuMjAxQzk3LjU5NDcgMTc4LjM5IDEwOS4yNzMgNzUuMTk3IDE3OC4zNDkgMzIuMTQzNUMyNDcuNDI0IC0xMC45MTAxIDI5OS4xNjggMjUuMzI0MSAzNDMuMzAzIDk2LjEzNTdDMzg3LjQzOSAxNjYuOTQ3IDMwMy4zMjcgMTExLjA2OCAyNDYuNjU5IDE0Ni4zODhDMTc3LjU4NCAxODkuNDQyIDE4NS44NjcgMzIwLjAxMyAxNDEuNzMxIDI0OS4yMDFaJyBmaWxsPScjMjRDRkE2Jy8+PC9nPjxnIGZpbHRlcj0ndXJsKCNmaWx0ZXIxX2ZfMjUwXzQ3NiknPjxjaXJjbGUgY3g9JzM5NycgY3k9JzgxNS45NDEnIHI9JzU5JyBmaWxsPScjMjRDRkE2Jy8+PC9nPjxnIGZpbHRlcj0ndXJsKCNmaWx0ZXIyX2ZfMjUwXzQ3NiknPjxjaXJjbGUgY3g9JzQyJyBjeT0nMjY2OS45Nicgcj0nMTAzJyBmaWxsPScjMjRDRkE2Jy8+PC9nPjwvZz48L2c+PGRlZnM+PGZpbHRlciBpZD0nZmlsdGVyMF9mXzI1MF80NzYnIHg9Jy0yOC4zNDc3JyB5PSctMTMwLjQwNycgd2lkdGg9JzUyNy45OTUnIGhlaWdodD0nNTQ0LjI1OCcgZmlsdGVyVW5pdHM9J3VzZXJTcGFjZU9uVXNlJyBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9J3NSR0InPjxmZUZsb29kIGZsb29kLW9wYWNpdHk9JzAnIHJlc3VsdD0nQmFja2dyb3VuZEltYWdlRml4Jy8+PGZlQmxlbmQgbW9kZT0nbm9ybWFsJyBpbj0nU291cmNlR3JhcGhpYycgaW4yPSdCYWNrZ3JvdW5kSW1hZ2VGaXgnIHJlc3VsdD0nc2hhcGUnLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSc3MicgcmVzdWx0PSdlZmZlY3QxX2ZvcmVncm91bmRCbHVyXzI1MF80NzYnLz48L2ZpbHRlcj48ZmlsdGVyIGlkPSdmaWx0ZXIxX2ZfMjUwXzQ3NicgeD0nOTQnIHk9JzUxMi45NDEnIHdpZHRoPSc2MDYnIGhlaWdodD0nNjA2JyBmaWx0ZXJVbml0cz0ndXNlclNwYWNlT25Vc2UnIGNvbG9yLWludGVycG9sYXRpb24tZmlsdGVycz0nc1JHQic+PGZlRmxvb2QgZmxvb2Qtb3BhY2l0eT0nMCcgcmVzdWx0PSdCYWNrZ3JvdW5kSW1hZ2VGaXgnLz48ZmVCbGVuZCBtb2RlPSdub3JtYWwnIGluPSdTb3VyY2VHcmFwaGljJyBpbjI9J0JhY2tncm91bmRJbWFnZUZpeCcgcmVzdWx0PSdzaGFwZScvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249JzEyMicgcmVzdWx0PSdlZmZlY3QxX2ZvcmVncm91bmRCbHVyXzI1MF80NzYnLz48L2ZpbHRlcj48ZmlsdGVyIGlkPSdmaWx0ZXIyX2ZfMjUwXzQ3NicgeD0nLTQ2MScgeT0nMjE2Ni45Nicgd2lkdGg9JzEwMDYnIGhlaWdodD0nMTAwNicgZmlsdGVyVW5pdHM9J3VzZXJTcGFjZU9uVXNlJyBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9J3NSR0InPjxmZUZsb29kIGZsb29kLW9wYWNpdHk9JzAnIHJlc3VsdD0nQmFja2dyb3VuZEltYWdlRml4Jy8+PGZlQmxlbmQgbW9kZT0nbm9ybWFsJyBpbj0nU291cmNlR3JhcGhpYycgaW4yPSdCYWNrZ3JvdW5kSW1hZ2VGaXgnIHJlc3VsdD0nc2hhcGUnLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPScyMDAnIHJlc3VsdD0nZWZmZWN0MV9mb3JlZ3JvdW5kQmx1cl8yNTBfNDc2Jy8+PC9maWx0ZXI+PGNsaXBQYXRoIGlkPSdjbGlwMF8yNTBfNDc2Jz48cmVjdCB3aWR0aD0nNDMwJyBoZWlnaHQ9JzQwNDcnIGZpbGw9J3doaXRlJy8+PC9jbGlwUGF0aD48L2RlZnM+PC9zdmc+Cg==');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: initial;
+            /* background-position: center top; */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item img {
+            width: 80px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .course-info {
+            flex: 2;
+        }
+
+        .quantity-controls {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-controls a {
+            display: inline-block;
+            padding: 5px 12px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .quantity-controls a:hover {
+            background: rgb(15, 59, 235);
+        }
+
+        .subtotal {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .remove {
+            display: block;
+            margin-top: 5px;
+            color: red;
+            text-decoration: none;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10px;
+            border-top: 2px solid #eee;
+        }
+
+        .checkout-btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .checkout-btn:hover {
+            background: #4338ca;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .btn-add-course {
+            display: inline-block;
+            padding: 15px 30px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: 0.3s ease;
+            background: #4338ca;
+        }
+
+        .btn-add-course:hover {
+            background: #3324d1;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+
+        .navbar {
+            height: 70px;
+            background: #020617;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+        }
+
+
+        .logo span {
+            color: #38bdf8;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin-left: 50vw;
+
+        }
+
+        .nav-links li a {
+            color: #e5e7eb;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: #38bdf8;
+        }
+
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .login {
+            color: #38bdf8;
+            border: 1px solid #38bdf8;
+        }
+
+        .signup {
+            background: #38bdf8;
+            color: #020617;
+        }
+
+        .signup:hover {
+            background: #0ea5e9;
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-greet {
+            color: #e5e7eb;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+
+        .btn-login {
+            color: #e5e7eb;
+            border: 1px solid #374151;
+        }
+
+        .btn-login:hover {
+            background-color: #1f2933;
+        }
+
+
+        .btn-signup {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+        }
+
+        .btn-signup:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        .btn-logout {
+            background-color: #ef4444;
+            color: white;
+        }
+
+        .btn-logout:hover {
+            background-color: #dc2626;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span>Shreyians</span>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'course_list' %}">Courses</a></li>
+
+            <li><a href="{% url 'cart_page' %}">Cart</a></li>
+        </ul>
+
+        <div class="auth-buttons">
+            {% if request.user.is_authenticated %}
+            <span style="color:#e5e7eb; font-weight:600;">
+                Hi, {{ request.user.username }}
+            </span>
+            <a href="{% url 'signout' %}" class="login">Logout</a>
+            {% else %}
+            <a href="{% url 'signin' %}" class="login">Login</a>
+            <a href="{% url 'signup' %}" class="signup">Sign Up</a>
+            {% endif %}
+        </div>
+
+    </nav>
+
+    <div class="container">
+        <h2>🛒 My Cart</h2>
+
+        {% if cart_items %}
+        {% for item in cart_items %}
+        <div class="item">
+            <img src="{{ item.course.image.url }}" alt="{{ item.course.title }}">
+
+            <div class="course-info">
+                <strong>{{ item.course.title }}</strong><br>
+                ₹{{ item.price }} × {{ item.quantity }}
+            </div>
+
+            <div class="quantity-controls">
+                <a href="{% url 'update_cart' item.course.id 'dec' %}">−</a>
+                {{ item.quantity }}
+                <a href="{% url 'update_cart' item.course.id 'inc' %}">+</a>
+            </div>
+
+            <div class="subtotal">
+                ₹{{ item.subtotal }}
+                <a href="{% url 'update_cart' item.course.id 'remove' %}" class="remove">Remove</a>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="total">
+            <div>Total Items: {{ total_items }}</div>
+            <div>Total Price: ₹{{ total_price }}</div>
+        </div>
+
+        <a href="{% url 'checkout_page' %}" class="checkout-btn">Checkout</a>
+        {% else %}
+        <div class="empty-cart">
+            <h3>Your cart is empty 😕</h3>
+            <a href="{% url 'course_list' %}" class="btn-add-course">
+                Add courses to your cart to start learning!
+            </a>
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>
