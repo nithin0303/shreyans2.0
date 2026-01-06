@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+        .container {
+            width: 90%;
+            margin: 30px auto;
+        }
+        .header {
+            background: #007bff;
+            color: white;
+            padding: 20px;
+            border-radius: 6px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .btn.logout {
+            background: #dc3545;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+  
+    <div class="header">
+        <h1>Welcome, {{ request.user.username }} 👋</h1>
+        <p>Email: {{ request.user.email }}</p>
+    </div>
+
+  
+    <div class="card">
+        <h2>Your Account</h2>
+        <p><strong>Username:</strong> {{ request.user.username }}</p>
+        <p><strong>Email:</strong> {{ request.user.email }}</p>
+
+        
+    </div>
+
+    
+    <div class="card">
+        <h2>Your Courses</h2>
+        <p>You have not enrolled in any courses yet.</p>
+        <a href="{% url 'course_list' %}" class="btn">Browse Courses</a>
+    </div>
+
+   
+    <div class="card">
+        <h2>Quick Actions</h2>
+        <div class="grid">
+            <div>
+                <a href="{% url 'course_list' %}" class="btn">All Courses</a>
+            </div>
+            
+            <div>
+                <a href="{% url 'home' %}" class="btn">Home</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

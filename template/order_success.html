@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Success</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+    height: 70px;
+    background: #020617;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+}
+
+.logo span {
+    color: #38bdf8;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+   margin-left: 50vw;
+
+}
+
+.nav-links li a {
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-links li a:hover {
+    color: #38bdf8;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.auth-buttons a {
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login {
+    color: #38bdf8;
+    border: 1px solid #38bdf8;
+}
+
+.signup {
+    background: #38bdf8;
+    color: #020617;
+}
+
+/* ================= SUCCESS BOX ================= */
+.page-wrapper {
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-box {
+    background: #fff;
+    padding: 50px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    max-width: 420px;
+}
+
+.success-box h2 {
+    color: #16a34a;
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: #374151;
+    font-size: 15px;
+}
+
+.success-box a {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 28px;
+    background: #4f46e5;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.success-box a:hover {
+    background: #4338ca;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <span>Shreyians</span>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'course_list' %}">Courses</a></li>
+         <li><a href="{% url 'cart_page' %}">Cart</a></li>
+    </ul>
+
+    <div class="auth-buttons">
+        {% if request.user.is_authenticated %}
+            <span style="color:#e5e7eb; font-weight:600;">
+                Hi, {{ request.user.username }}
+            </span>
+            <a href="{% url 'signout' %}" class="login">Logout</a>
+        {% else %}
+            <a href="{% url 'signin' %}" class="login">Login</a>
+            <a href="{% url 'signup' %}" class="signup">Sign Up</a>
+        {% endif %}
+    </div>
+</nav>
+
+<div class="page-wrapper">
+    <div class="success-box">
+        <h2>🎉 Enrollment Confirmed!</h2>
+        <p>Thank you for enrolling. You can start learning your courses now.</p>
+        <a href="{% url 'home' %}">Go to Home</a>
+    </div>
+</div>
+
+</body>
+</html>
